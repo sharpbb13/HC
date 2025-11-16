@@ -1,0 +1,150 @@
+Install WordCloud -
+Installs the wordcloud library, which will later be used to generate a WordCloud visualization from tweets
+
+
+Cell 1 – Import Libraries
+
+Imports all required libraries:
+-  pandas, numpy → data handling
+-  matplotlib, seaborn → visualization
+-  re → regex text cleaning
+-  nltk → NLP tools + stopwords
+-  Counter → word frequency counting
+-  WordCloud → word cloud visualization
+-  CountVectorizer → convert text to bag-of-words
+-  LatentDirichletAllocation (LDA) → topic modeling
+
+
+Cell 2 – Download NLTK Resources
+
+-  Downloads punkt tokenizer
+-  Downloads stopwords list
+-  These are needed for text preprocessing (tokenization + stopword removal).
+
+
+Cell 3 – Load Dataset
+
+-  Reads the CSV file twitter_training.csv
+-  Renames columns for clarity: id, topic, sentiment, tweet
+-  Drops missing tweets
+-  Prints dataset shape and shows first few rows
+-  Ensures data is successfully loaded and clean.
+
+
+Cell 4 – Text Preprocessing (Cleaning)
+
+-  Loads list of English stopwords
+-  Defines clean_text() function that:
+   - Converts text to lowercase
+   - Removes URLs
+   - Removes @mentions and hashtags
+   - Removes punctuation/digits
+   - Removes extra spaces
+-  Applies function to create new column clean_tweet
+-  This prepares tweets for NLP processing.
+
+
+Cell 5 – Tokenization
+
+-  Downloads nltk resources again (safe step)
+-  Extracts words from each clean tweet using regex (\b\w+\b)
+-  Removes stopwords
+-  Stores tokens in new column tokens
+-  This converts text into lists of words.
+
+
+Cell 6 – Word Frequency (Zipf’s Law)
+
+-  Flattens all tokens across tweets
+-  Counts word frequencies using Counter
+-  Extracts top 50 most frequent words
+-  Used for analyzing common words and verifying Zipf’s distribution.
+
+
+Cell 7 – Plot Zipf’s Law
+-  Creates log–log plot: Rank vs Frequency
+-  Shows that word frequency follows power law distribution
+--  This visualizes Zipf’s Law.
+
+
+Cell 8 – Heaps’ Law (Vocabulary Growth)
+
+-  Iterates through tweets
+-  Tracks:
+   -- total tokens seen
+   -- unique vocabulary size
+-  Saves values to lists
+-  Shows how vocabulary grows as more tokens are added.
+
+
+Cell 9 – Plot Heaps’ Law
+
+-  Plots total tokens vs unique words
+-  Shows vocabulary grows sub-linearly
+-  Confirms Heaps’ Law behavior.
+
+
+Cell 10 – Word Cloud
+
+-  Joins all words into a single string
+-  Generates wordcloud from all tokens
+-  Displays the word cloud image
+-  Shows most frequent words visually.
+
+
+Cell 11 – Topic Modeling using LDA
+
+-  Samples first 500 tweets for speed
+-  Converts text into bag-of-words (CountVectorizer)
+-  Builds LDA model with:
+   -- 3 topics
+   -- fewer iterations for faster training
+-  Fits LDA to data
+-  Prints top 10 words from each topic
+-  This extracts underlying themes from tweets.
+
+
+Cell 12 – Display Final Topics
+
+-  Retrieves feature names
+-  Prints words belonging to each discovered topic
+-  Helps understand what each topic is about.
+
+
+Cell 13 – Insights Summary
+
+--  Prints final conclusions:
+-  Zipf’s Law holds
+-  Heaps’ Law holds
+-  LDA successfully extracts main discussion themes
+
+
+ALGORITHM --- 
+
+1. Start the program.
+2. Import all required libraries
+(pandas, numpy, matplotlib, nltk, re, Counter, WordCloud, CountVectorizer, LDA).
+3. Download NLTK resources
+(punkt tokenizer and stopwords list).
+4. Load the Twitter training dataset and remove missing tweets.
+5. Clean the text by
+    - converting to lowercase,
+    - removing URLs, mentions, hashtags, punctuation, digits,
+    - removing extra spaces.
+6. Tokenize the cleaned tweets and remove stopwords.
+7. Calculate word frequencies using Counter and extract the most frequent words.
+8. Plot Zipf’s Law
+(log–log plot of rank vs frequency).
+9. Apply Heaps’ Law
+    - track total tokens,
+    - track unique vocabulary size.
+10. Plot Heaps’ Law
+(vocabulary size vs total tokens).
+11. Generate a WordCloud using all words.
+12. Perform Topic Modeling
+      - convert cleaned tweets to Bag-of-Words (CountVectorizer),
+      - train LDA model with defined number of topics,
+      - display top words for each topic.
+13. Print insights
+(Zipf’s Law, Heaps’ Law, and LDA topic conclusions).
+14. End the program.

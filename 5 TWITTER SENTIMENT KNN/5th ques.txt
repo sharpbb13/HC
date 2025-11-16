@@ -1,0 +1,170 @@
+PART A — CELL-WISE SMALL VIVA QUESTIONS (Short Q&A)
+
+(These are tiny questions an external may ask while pointing at a specific cell.)
+
+📌 Cell-1: Import Libraries
+
+Q: Why do we import pandas?
+A: To handle datasets in table form.
+
+Q: Why is re module imported?
+A: For regex-based text cleaning.
+
+Q: Why do we import sklearn?
+A: For preprocessing and classification.
+
+📌 Cell-2: Load the Dataset
+
+Q: Which function is used to load a CSV?
+A: pd.read_csv().
+
+Q: Why do we load Twitter data?
+A: To analyze tweets and classify them.
+
+Q: What is a DataFrame?
+A: A table-like structure with rows and columns.
+
+📌 Cell-3: Display First Few Rows
+
+Q: Why use df.head()?
+A: To view the first 5 rows.
+
+Q: What do you check in first rows?
+A: Format, missing values, columns.
+
+📌 Cell-4: Clean Tweets (Remove hashtags, links, special characters)
+
+Q: What is tweet cleaning?
+A: Removing unwanted text parts.
+
+Q: Why remove URLs?
+A: They add noise and no meaning.
+
+Q: What is re.sub() used for?
+A: Replace patterns using regex.
+
+📌 Cell-5: Lowercasing
+
+Q: Why convert text to lowercase?
+A: To maintain uniformity.
+
+📌 Cell-6: Remove Stopwords
+
+Q: What are stopwords?
+A: Common words like "is", "the", "are".
+
+Q: Why remove them?
+A: They don’t add meaning.
+
+📌 Cell-7: Tokenization
+
+Q: What is tokenization?
+A: Splitting text into words.
+
+Q: Which library supports tokenization?
+A: NLTK.
+
+📌 Cell-8: Feature Extraction (TF–IDF / CountVectorizer)
+
+Q: Why convert text into numbers?
+A: ML models only accept numerical data.
+
+Q: Name two text vectorizers.
+A: CountVectorizer, TfidfVectorizer.
+
+📌 Cell-9: Split Data (Train/Test)
+
+Q: What is train_test_split?
+A: Divides data into training and testing.
+
+Q: Why test data needed?
+A: To check model performance.
+
+📌 Cell-10: Train KNN Model
+
+Q: Why choose KNN classifier?
+A: It’s simple and works well for text distances.
+
+Q: What is K in KNN?
+A: Number of nearest neighbors considered.
+
+📌 Cell-11: Prediction
+
+Q: What does prediction mean?
+A: Model guessing class of new tweet.
+
+Q: Function used to predict?
+A: model.predict().
+
+📌 Cell-12: Accuracy Score
+
+Q: What is accuracy?
+A: How many predictions are correct.
+
+Q: Why do we calculate accuracy?
+A: To measure model performance.
+
+✅ PART B — OVERALL PROGRAM VIVA QUESTIONS (Medium Size Q&A)
+1. What is the goal of Twitter Text Analysis?
+
+Ans: To clean tweets, convert them into numerical features, and classify their sentiment/category.
+
+2. Why do we need Text Cleaning?
+
+Ans: Tweets contain noise like emojis, hashtags, links, and symbols. Cleaning helps model understand meaningful text.
+
+3. What is the use of TF–IDF in text classification?
+
+Ans: It converts text into numeric values based on importance of each word.
+
+4. Why is KNN used in this experiment?
+
+Ans: Because KNN classifies tweets by comparing similarity (distance) with other tweets.
+
+5. What distance metric is used in KNN?
+
+Ans: Mostly Euclidean or cosine distance for text data.
+
+6. What is the importance of train-test split?
+
+Ans: To ensure the model is tested on unseen data and avoid overfitting.
+
+7. Why is lowercase conversion required?
+
+Ans: Words like "India" and "india" should be treated the same.
+
+✅ PART C — EXTERNAL DEEP VIVA QUESTIONS (Harder Q&A)
+1. Explain the TF-IDF formula in simple words.
+
+Ans:
+TF = how many times a word appears in a tweet
+IDF = how rare the word is in all tweets
+TF–IDF = importance score of word
+
+2. Why is KNN slow during prediction?
+
+Ans: Because it compares new data with all training data points.
+
+3. Why are stopwords removed in NLP?
+
+Ans: They frequently appear but add no meaning → they reduce accuracy.
+
+4. Difference between CountVectorizer and TF-IDF?
+
+Ans:
+
+CountVectorizer: counts how many times a word appears
+
+TF-IDF: gives more weight to important words, reduces weight for common words
+
+5. Why do tweets need special cleaning compared to normal text?
+
+Ans: Tweets contain hashtags (#), mentions (@), links, emojis — more noise.
+
+6. Why is tokenization necessary?
+
+Ans: It breaks a sentence into words so that processing becomes easy.
+
+7. Can KNN work without text vectorization?
+
+Ans: No, because KNN only understands numbers, not raw text.
