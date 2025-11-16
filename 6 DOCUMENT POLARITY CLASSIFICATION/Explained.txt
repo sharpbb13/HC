@@ -1,0 +1,82 @@
+Cell 1 — Import Libraries
+Imports all required modules:
+-  nltk + movie_reviews  →  load movie review dataset
+-  TfidfVectorizer  →  convert text to TF-IDF features
+-  MultinomialNB  →  Naïve Bayes classifier
+-  accuracy_score, confusion_matrix, classification_report  →  evaluation
+-  train_test_split  →  split data
+-  random  →  shuffle documents
+-  numpy  →  numeric operations
+
+
+Cell 2 — Download Movie Review Dataset
+
+Downloads the movie_reviews dataset from NLTK.
+Contains 2000 movie reviews, each labelled pos or neg.
+
+
+Cell 3 — Load Dataset
+-  Reads all review files and assigns their labels
+-  Stores them as (text, label) pairs
+-  Shuffles the dataset
+-  Separates into texts and labels
+-  Prints first 2 samples to verify data
+
+
+Cell 4 — Train-Test Split
+
+-  Splits data into:
+    -- 80% training
+    -- 20% testing
+with fixed random_state=42 for reproducibility.
+
+
+Cell 5 — Convert Text to TF-IDF Features
+
+-  Creates TF-IDF vectorizer (removes English stopwords, limits features to 3000)
+-  Fits on training data and transforms it
+-  Converts test data using the same vectorizer
+-  Prints the resulting feature matrix shape
+
+
+Cell 6 — Train Naïve Bayes Model
+
+-  Creates Multinomial Naïve Bayes classifier
+-  Trains the model on TF-IDF vectors and labels
+
+
+Cell 7 — Evaluate Model
+
+-  Predicts sentiment for test TF-IDF data
+Prints:
+  - Accuracy
+  - Confusion matrix
+  - Classification report (precision, recall, F1-score)
+
+
+Cell 8 — Predict on Custom Inputs
+
+-  Tests the trained model on 3 custom movie reviews:
+-- Converts them to TF-IDF
+-- Predicts sentiment using trained model
+-- Prints each text with POS or NEG label
+
+
+Cell 9 — Confusion Matrix Heatmap
+
+-  Creates heatmap of confusion matrix using seaborn
+-  X-axis: predicted labels
+-  Y-axis: true labels
+-  Helps visualize classification correctness
+
+
+ALGORITHM ---
+1. Import all required NLP and ML libraries.
+2. Download and load the NLTK movie_reviews dataset.
+3. Prepare and shuffle documents with their sentiment labels.
+4. Split the data into training and testing sets.
+5. Convert text into numerical features using TF-IDF.
+6. Train a Multinomial Naïve Bayes classifier.
+7. Evaluate the model using accuracy and classification reports.
+8. Predict sentiment for custom input sentences.
+9. Visualize results using a confusion matrix heatmap.

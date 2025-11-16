@@ -1,0 +1,192 @@
+PART A — CELL-WISE SHORT QUESTIONS (EASY & DIRECT)
+
+(These are asked directly from the code cells)
+
+📌 Cell 1 — Importing Libraries
+Q1. Why do we import pandas?
+
+To read and handle text data easily in table form.
+
+Q2. Why do we import sklearn?
+
+To use machine learning tools like vectorizers and classifiers.
+
+Q3. What is CountVectorizer?
+
+It converts text into numbers by counting each word.
+
+📌 Cell 2 — Loading the Dataset
+Q4. Why do we use pd.read_csv() here?
+
+To load our text dataset from a CSV file into a DataFrame.
+
+Q5. What columns does the dataset contain?
+
+It usually contains:
+
+Text/document
+
+Label/polarity (positive or negative)
+
+Q6. What does data.head() show?
+
+The first 5 rows of the dataset.
+
+📌 Cell 3 — Checking Missing Values
+Q7. Why do we use isnull().sum()?
+
+To check if any text or label is missing.
+
+Q8. Why must missing values be cleaned?
+
+Because models can't work on empty text.
+
+📌 Cell 4 — Text Cleaning
+Q9. Why do we convert text to lowercase?
+
+To make words uniform (e.g., Good = GOOD = good).
+
+Q10. Why do we remove punctuation?
+
+Because punctuations do not affect meaning.
+
+Q11. Why do we remove stopwords?
+
+Stopwords like and, the, is, was do not add meaning to classification.
+
+📌 Cell 5 — Splitting Data
+Q12. Why do we use train_test_split()?
+
+To keep some data for training and some for testing.
+
+Q13. What is test_size=0.2?
+
+20% of data will be used for testing.
+
+📌 Cell 6 — Vectorization
+Q14. Why do we use CountVectorizer?
+
+To convert cleaned text into numerical form.
+
+Q15. What does fit_transform() do?
+
+Learns vocabulary and converts text to numeric vectors.
+
+Q16. What is X_train.shape?
+
+It shows number of documents and number of words used as features.
+
+📌 Cell 7 — Model Training
+Q17. Which model is used for classification?
+
+It may be:
+
+Naive Bayes
+
+Logistic Regression
+
+SVM
+(any suitable model)
+
+Q18. Why do we fit the model?
+
+To teach the model how positive and negative documents look.
+
+📌 Cell 8 — Model Prediction
+Q19. What does model.predict() do?
+
+Predicts whether a new document is positive or negative.
+
+Q20. Why do we test on X_test?
+
+To check accuracy on unseen data.
+
+📌 Cell 9 — Accuracy
+Q21. Why do we use accuracy_score()?
+
+To measure how many predictions are correct.
+
+Q22. What is a good accuracy for text polarity tasks?
+
+Generally 70%–90% is acceptable.
+
+📌 Cell 10 — Testing Custom Input
+Q23. What is the purpose of giving our own text to the model?
+
+To check model performance manually.
+
+Q24. Why do we use vectorizer.transform() for new text?
+
+Because new text must also be converted into numbers.
+
+Q25. What does the printed output show?
+
+Whether the input text is predicted as positive or negative.
+
+⭐ PART B — GENERAL VIVA QUESTIONS (ASKED BY EXAMINERS)
+
+(Same style as previous topics)
+
+Q26. What is document polarity classification?
+
+It determines whether a document expresses a positive or negative sentiment.
+
+Q27. Why do we clean text before training?
+
+Because raw text contains noise that makes learning harder.
+
+Q28. What is feature extraction in NLP?
+
+Turning words into numbers so the computer can understand them.
+
+Q29. Why is CountVectorizer used instead of raw text?
+
+Models cannot understand words, only numbers.
+
+Q30. What is a Bag-of-Words model?
+
+A method where text is represented by word counts.
+
+Q31. Why do we split data into train and test?
+
+To check if our model can generalize.
+
+Q32. What is accuracy?
+
+Percentage of correct predictions.
+
+Q33. Why do we remove stopwords?
+
+They don’t change the sentiment.
+
+Q34. Give examples of positive sentiment words.
+
+good, excellent, happy, amazing
+
+Q35. Give examples of negative sentiment words.
+
+bad, terrible, hate, poor
+
+⭐ PART C — HARD EXTERNAL QUESTIONS
+
+(Asked to test deeper understanding)
+
+Q36. What are limitations of Bag-of-Words?
+
+It ignores word order and meaning.
+
+Q37. What happens if dataset is unbalanced?
+
+Model will favor the majority class.
+
+Q38. What is overfitting?
+
+When model memorizes training data but fails on new data.
+
+Q39. Why is logistic regression commonly used in text classification?
+
+It works well with high-dimensional sparse data.
+
+Q40. What is the difference between CountVectorizer and TF-IDF?
+
+TF-IDF gives more weight to important words and less weight to common ones.
