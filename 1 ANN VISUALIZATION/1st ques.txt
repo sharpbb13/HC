@@ -1,0 +1,197 @@
+TOPIC 1 — ANN VISUALIZATION
+Cell-Wise Questions + Answers + General Q&A
+🔵 CELL 1 — Importing Libraries
+Cell Code (summary):
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.neural_network import MLPClassifier
+
+Questions & Answers
+1. Why do we import numpy?
+
+To do mathematical operations easily.
+
+2. Why do we import matplotlib?
+
+To draw graphs and visualizations.
+
+3. Why do we import MLPClassifier?
+
+Because it is a ready-made ANN model in sklearn.
+
+4. What type of ANN is MLPClassifier?
+
+It is a feed-forward multilayer perceptron.
+
+5. Is importing libraries necessary?
+
+Yes, because without them we cannot use ANN functions.
+
+🔵 CELL 2 — Creating Sample Data
+Cell Code (summary):
+X = np.array([...])
+y = np.array([...])
+
+Questions & Answers
+1. What is X?
+
+The input features we give to ANN.
+
+2. What is y?
+
+The output labels/class.
+
+3. Why do we store inputs in an array?
+
+So the model can read them in a structured way.
+
+4. Why use numpy arrays instead of lists?
+
+Because numpy is faster and better for ML.
+
+5. What type of learning is this?
+
+Supervised learning (because labels y exist).
+
+🔵 CELL 3 — Creating the ANN Model
+Cell Code (summary):
+model = MLPClassifier(hidden_layer_sizes=(5,), activation='relu', random_state=1)
+
+Questions & Answers
+1. What does hidden_layer_sizes=(5,) mean?
+
+The ANN has 1 hidden layer with 5 neurons.
+
+2. Why use ReLU activation?
+
+It is fast and prevents vanishing gradient.
+
+3. What does random_state do?
+
+Makes results same every time (reproducible).
+
+4. Is this a deep neural network?
+
+No, it is shallow (only 1 hidden layer).
+
+5. Why do we create the model before training?
+
+Because ANN structure must be defined first.
+
+🔵 CELL 4 — Training / Fitting the Model
+Cell Code (summary):
+model.fit(X, y)
+
+Questions & Answers
+1. What does fit() do?
+
+It trains the neural network.
+
+2. What happens during training?
+
+Weights and biases get updated.
+
+3. What method is used to update weights?
+
+Backpropagation.
+
+4. Why do we need training?
+
+So the model can learn patterns from data.
+
+5. What output do we see after training?
+
+Convergence message or warnings.
+
+🔵 CELL 5 — Visualizing the ANN Weights
+Cell Code (summary):
+weights = model.coefs_
+plt.imshow(weights[0])
+plt.colorbar()
+
+Questions & Answers
+1. What does model.coefs_ represent?
+
+It stores all weight values of the ANN.
+
+2. Why do we use imshow()?
+
+To display weight values as an image.
+
+3. Why add colorbar()?
+
+To understand which colors represent high or low weights.
+
+4. What does bright color mean in weight visualization?
+
+Higher weight value.
+
+5. Why visualize weights?
+
+To see how strongly neurons are connected.
+
+🟣 GENERAL ANN QUESTIONS (From previous answer — INCLUDED as you requested)
+1. What is ANN?
+
+A model inspired by the brain with neurons and layers.
+
+2. What is a neuron?
+
+A calculation unit that processes input.
+
+3. What is a weight?
+
+A value that shows importance of an input.
+
+4. What is bias?
+
+A constant added to adjust output.
+
+5. What is activation function?
+
+Decides whether neuron fires or not.
+
+6. What is backpropagation?
+
+Training method to update weights.
+
+7. What is a layer?
+
+A group of neurons.
+
+8. What is a hidden layer?
+
+Middle layer where learning happens.
+
+9. What is loss?
+
+Difference between predicted and real value.
+
+10. What is an epoch?
+
+One round of full training.
+
+11. Why visualize ANN?
+
+To understand structure and learning.
+
+12. What is ReLU?
+
+An activation that outputs only positive values.
+
+13. What is softmax used for?
+
+Converting outputs to probabilities.
+
+14. What is learning rate?
+
+How fast model updates weights.
+
+15. What is overfitting?
+
+Model memorizes instead of learning.
+
+16. What is underfitting?
+
+Model is too simple; can’t learn.

@@ -1,0 +1,101 @@
+CELL 1 ---  LIBRARIES
+
+numpy, pandas  →  numerical & data handling
+matplotlib  →  plotting graphs
+load_iris  →  load Iris dataset
+train_test_split  →  divide data into train & test
+StandardScaler  →  normalize feature values
+Sequential, Dense  →  to build the ANN model
+plot_model  →  draw ANN architecture
+os  →  file handling
+
+
+CELL 2 – Load Iris Dataset
+
+- Loads the Iris dataset using load_iris(as_frame=True)
+- Converts it to a DataFrame using .frame.copy()
+- Ensures the target column is present
+- Renames the column to "Species" for clarity
+- Displays first 5 rows
+- Prints all column names
+-- Confirms dataset is correctly loaded and clean.
+
+
+Cell 3 – Separate Features & Target + Scaling + Train/Test Split
+
+- X = numeric feature columns (sepal & petal measurements).
+- y = species labels (0, 1, 2).
+- Standardizes all feature values using StandardScaler.
+- Splits data into 80% train and 20% test, with stratified class distribution.
+
+CELL 4 – Build ANN Model
+
+Creates a 3-layer Artificial Neural Network:
+1.  Input Layer – Dense(12), activation = ReLU
+2.  Hidden Layer – Dense(8), activation = ReLU
+3.  Output Layer – Dense(3), activation = Softmax
+(3 classes → setosa, versicolor, virginica)
+- Model compiled with:
+   - Optimizer: Adam
+   - Loss: sparse_categorical_crossentropy (correct for integer labels)
+   - Metric: accuracy
+- Prints summary → number of neurons, parameters.
+
+
+CELL 5 – Train the Model
+
+Trains the network for 50 epochs, batch size 8.
+Uses validation_data to track validation accuracy and loss.
+Training output shows improvement with each epoch.
+
+
+Cell 6 – Plot Accuracy/Loss Curves
+
+Creates two graphs:
+- Accuracy vs Epochs → shows training & validation accuracy
+- Loss vs Epochs → shows how model error decreases
+Useful for checking model performance and overfitting.
+
+
+Cell 7 – Evaluate on Test Data
+
+- Calculates test loss and test accuracy.
+- Prints final accuracy (≈ 93%).
+This tells how well the trained model performs on unseen data.
+
+
+Cell 8 – Make a Sample Prediction
+
+- Creates a single input sample.
+- Scales it using the same StandardScaler.
+- Predicts the species label using model.predict().
+- Shows predicted class index, label, and class probabilities.
+
+
+Cell 9 – Install Dependencies
+
+- Installs Visualizer packages (pydot, graphviz) needed for ANN diagram.
+
+
+Cell 10 – Save Network Diagram
+
+- Tries to generate ANN diagram using ann_visualizer.
+- If that fails, uses Keras plot_model.
+- Saves diagram as network_diagram.png.
+
+
+Cell 11 – Save Trained Model
+
+- Saves the trained ANN model as assignment1_iris_ann.h5
+- This allows reusing the model later without retraining.
+
+
+ALGORITHM --
+
+1. Start and import all required libraries.
+2. Load the Iris dataset and prepare it (clean + separate features and target).
+3. Normalize features and split data into training and testing sets.
+4. Build and compile the ANN model (input, hidden, output layers).
+5. Train the model, plot accuracy/loss, and evaluate on test data.
+6. Make predictions and save the model/ANN diagram.
+7. End
