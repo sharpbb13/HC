@@ -1,0 +1,345 @@
+CELL 1 — Importing Libraries
+Cell Code (summary)
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import nltk
+from wordcloud import WordCloud
+
+Questions & Answers
+1. Why do we import pandas?
+
+To load and handle text data in table form.
+
+2. Why do we import numpy?
+
+For numerical operations.
+
+3. Why matplotlib and seaborn?
+
+For making graphs and visualizations.
+
+4. Why import nltk?
+
+To process text (tokenizing, removing stopwords).
+
+5. What is WordCloud used for?
+
+To show most frequent words in picture format.
+
+🔵 CELL 2 — Loading Twitter Dataset
+Cell Code (summary)
+df = pd.read_csv("twitter_data.csv")
+df.head()
+
+Questions & Answers
+1. Why use read_csv()?
+
+To load twitter data from a file.
+
+2. What does df represent?
+
+A DataFrame containing all tweet text.
+
+3. What does head() show?
+
+First 5 rows, used to check if data loaded correctly.
+
+4. What is usually the important column?
+
+The "text" column where the tweet is stored.
+
+5. Why load dataset first?
+
+Because all analysis happens on this data.
+
+🔵 CELL 3 — Checking Missing or Null Values
+Cell Code (summary)
+df.isnull().sum()
+df.dropna(inplace=True)
+
+Questions & Answers
+1. Why check null values?
+
+To know if any tweet is empty.
+
+2. Why drop null values?
+
+Empty tweets cannot be used for analysis.
+
+3. What does inplace=True do?
+
+It updates the dataset without creating a new one.
+
+4. Why is clean data important?
+
+Dirty data leads to incorrect results.
+
+5. What problems do null tweets cause?
+
+Errors in preprocessing steps.
+
+🔵 CELL 4 — Text Preprocessing
+Cell Code (summary)
+import re
+df['clean'] = df['text'].apply(lambda x: re.sub('[^a-zA-Z ]', '', x.lower()))
+
+Questions & Answers
+1. Why convert text to lowercase?
+
+So ‘Love’ and ‘love’ are treated same.
+
+2. Why remove special characters?
+
+To keep only meaningful words.
+
+3. What does re.sub do?
+
+Replaces unwanted characters with empty space.
+
+4. Why create a new column "clean"?
+
+To store cleaned tweets separately.
+
+5. Why clean text before analysis?
+
+To improve accuracy and remove noise.
+
+🔵 CELL 5 — Tokenization
+Cell Code (summary)
+from nltk.tokenize import word_tokenize
+df['tokens'] = df['clean'].apply(word_tokenize)
+
+Questions & Answers
+1. What is tokenization?
+
+Breaking text into individual words.
+
+2. Why use word_tokenize?
+
+The function splits text properly.
+
+3. What is stored in df['tokens']?
+
+List of words for each tweet.
+
+4. Why tokenize tweets?
+
+To analyze words easily.
+
+5. Why not analyze the whole sentence?
+
+Word-level processing gives better insights.
+
+🔵 CELL 6 — Removing Stopwords
+Cell Code (summary)
+from nltk.corpus import stopwords
+stop = set(stopwords.words('english'))
+df['filtered'] = df['tokens'].apply(lambda x: [w for w in x if w not in stop])
+
+Questions & Answers
+1. What are stopwords?
+
+Common words like "the", "is", "and".
+
+2. Why remove stopwords?
+
+They do not add meaning to analysis.
+
+3. Why use set() for stopwords?
+
+Set lookup is faster than list lookup.
+
+4. What is df['filtered']?
+
+Tweets after removing useless words.
+
+5. Why clean words further?
+
+To focus on important content.
+
+🔵 CELL 7 — Word Cloud Visualization
+Cell Code (summary)
+all_words = ' '.join(df['clean'])
+wordcloud = WordCloud(width=800, height=400).generate(all_words)
+plt.imshow(wordcloud)
+plt.axis('off')
+
+Questions & Answers
+1. Why join all tweets into one string?
+
+WordCloud requires one big text input.
+
+2. What does WordCloud generate?
+
+A picture of most frequent words.
+
+3. Why are bigger words important?
+
+They appear more often in tweets.
+
+4. Why use imshow()?
+
+To display the word cloud image.
+
+5. Why remove axis?
+
+To make the word cloud look neat.
+
+🔵 CELL 8 — Applying Zipf’s Law
+Cell Code (summary)
+from collections import Counter
+word_freq = Counter(all_words.split())
+
+Questions & Answers
+1. What is Zipf’s Law?
+
+Most frequent word appears twice as much as second, and so on.
+
+2. Why use Counter?
+
+To count frequency of every word.
+
+3. Why split all words?
+
+To get individual words for counting.
+
+4. What does word_freq store?
+
+Dictionary of word → frequency.
+
+5. How do we check Zipf’s law?
+
+By plotting rank vs frequency.
+
+🔵 CELL 9 — Zipf’s Law Plot
+Cell Code (summary)
+freq = sorted(word_freq.values(), reverse=True)
+plt.plot(freq)
+plt.xlabel("Rank")
+plt.ylabel("Frequency")
+
+Questions & Answers
+1. What does sorted() do?
+
+Sorts words from most to least frequent.
+
+2. Why plot frequency?
+
+To visually check Zipf’s law.
+
+3. What is rank?
+
+Position of word based on frequency.
+
+4. Why reverse=True?
+
+So highest frequency comes first.
+
+5. What shape does graph show?
+
+A downward curve (Zipf pattern).
+
+🔵 CELL 10 — Applying Heaps’ Law
+Cell Code (summary)
+vocab_size = []
+tokens_count = []
+text = []
+for t in df['filtered']:
+    text.extend(t)
+    vocab_size.append(len(set(text)))
+    tokens_count.append(len(text))
+plt.plot(tokens_count, vocab_size)
+
+Questions & Answers
+1. What is Heap’s Law?
+
+Vocabulary grows slowly as more text is added.
+
+2. What is vocab_size?
+
+Unique words so far.
+
+3. What is tokens_count?
+
+Total words processed so far.
+
+4. Why use set()?
+
+To count unique words only.
+
+5. What graph does Heaps’ law give?
+
+A curve that increases slowly.
+
+🔵 CELL 11 — Topic Identification using Simple Method (LDA or Keyword Search)
+Cell Code (summary)
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.decomposition import LatentDirichletAllocation
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(df['clean'])
+lda = LatentDirichletAllocation(n_components=3)
+lda.fit(X)
+
+Questions & Answers
+1. Why use CountVectorizer?
+
+To convert text into numerical word counts.
+
+2. Why use LDA?
+
+To find hidden topics in tweets.
+
+3. What does n_components=3 mean?
+
+We want 3 topics.
+
+4. Why fit LDA model?
+
+To learn topic-word relations.
+
+5. What is topic modeling?
+
+Finding groups of similar tweets based on text.
+
+🟣 GENERAL TWITTER ANALYSIS VIVA QUESTIONS
+1. What is preprocessing?
+
+Cleaning text for analysis.
+
+2. Why remove emojis and hashtags?
+
+They add noise.
+
+3. What is tokenization?
+
+Breaking text into words.
+
+4. Why is Twitter data noisy?
+
+Contains slang, emojis, spelling mistakes.
+
+5. What is Zipf’s law used for?
+
+To understand frequency distribution of words.
+
+6. What is Heaps’ law used for?
+
+To study vocabulary growth.
+
+7. What is topic modeling?
+
+Automatically grouping similar texts.
+
+8. Why stopword removal is important?
+
+To focus on meaningful words.
+
+9. What is word cloud?
+
+A picture showing frequent words.
+
+10. Why do we clean tweets?
+
+To make analysis accurate.

@@ -1,0 +1,108 @@
+CELL 1 – Import Libraries
+
+-  pandas, numpy  →  data handling
+-  re  →  text cleaning (regex)
+-  stopwords, PorterStemmer  →  remove common words & stem text
+-  train_test_split  →  split dataset
+-  TfidfVectorizer  →  convert text into numeric features
+-  KNeighborsClassifier  →  KNN model
+-  accuracy_score, classification_report  →  evaluation
+-  matplotlib, seaborn  →  confusion matrix plot
+
+
+CELL 2 – Load Dataset
+
+-  Reads the dataset twitter_training.csv
+-  Assigns column names:
+   -- id, category, sentiment, tweet
+   -- Removes rows where tweet is missing
+
+
+CELL 3 – Display Dataset
+
+Prints dataset shape (rows, columns)
+Shows first few rows using df.head()
+
+
+CELL 4 – Clean Tweets
+
+-  Defines a function clean_text():
+   -- Converts text to lowercase
+   -- Removes URLs, symbols, punctuations
+   -- Removes numbers, extra spaces
+   -- Removes stopwords
+   -- Applies stemming
+- Then adds a new column clean_tweet.
+
+
+CELL 5 – Filter Sentiments & Convert to Labels
+
+-  Keeps only the 3 main sentiment classes:
+   -- Positive
+   -- Negative
+   -- Neutral
+- Converts them into numeric labels:
+-  Positive → 1
+-  Negative → 0
+-  Neutral → 2
+
+
+CELL 6 – Train-Test Split
+
+-  X = clean_tweet
+-  y = numeric labels
+-  Splits data into 80% train / 20% test
+-  stratify=y keeps class balance
+
+
+CELL 7 – TF-IDF Vectorization
+
+-  Creates a TF-IDF vectorizer with 5000 features
+-  Fits on training tweets
+-  Transforms both train and test sets
+
+
+CELL 8 – Train KNN Model
+
+-  Creates KNN classifier with 5 neighbors
+-  Uses cosine distance (best for text data)
+-  Trains model on TF-IDF vectors
+
+
+CELL 9 – Evaluate Prediction
+
+- Predicts sentiment for test dataset
+- Prints:
+  -- Accuracy
+  -- Classification report (precision, recall, F1)
+
+
+CELL 10 – Confusion Matrix Visualization
+
+-  Plots confusion matrix using heatmap
+-  Shows which classes are correctly or incorrectly classified
+
+
+CELL 11 – Example Predictions
+
+-  Predicts sentiment for 3 new test tweets
+-  Converts prediction back to label:
+   - 1 → Positive
+   - 0 → Negative
+   - 2 → Neutral
+-  Prints predicted sentiment for each example tweet
+
+
+
+ALGORITHM ---
+
+1. Import all required libraries.
+2. Load the Twitter dataset and remove missing tweets.
+3. Clean each tweet (lowercase, remove URLs, stopwords, etc.).
+4. Keep three sentiment classes and convert them to numeric labels.
+5. Split dataset into training and testing sets.
+6. Convert tweets to TF-IDF numeric features.
+7. Train a KNN classifier using cosine distance.
+8. Predict sentiments on test data and evaluate accuracy.
+9. Plot confusion matrix.
+10. Test model on example tweets.
