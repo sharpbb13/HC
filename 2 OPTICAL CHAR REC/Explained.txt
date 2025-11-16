@@ -1,0 +1,98 @@
+CELL 1 – Import Libraries
+
+This cell imports all the required modules:
+- numpy, matplotlib  →  numerical operations & plotting
+- load_digits  →  built-in digits dataset (8×8 pixel images)
+- train_test_split  →  split dataset
+- StandardScaler  →  normalize features
+- Sequential, Dense, Dropout  →  building ANN
+- to_categorical  →  convert labels to one-hot format
+
+
+CELL 2 – Load Digits Dataset
+
+-  Loads digits dataset using load_digits().
+-  X = digits.data (1797 samples × 64 features → flattened 8×8 images)
+-  y = digits.target (labels: 0–9 digits)
+-  Prints shapes to confirm dataset loaded properly.
+
+
+CELL 3 – Display Sample Images
+
+-  Plots 10 sample digit images using imshow().
+-  Each image is shown in grayscale along with its true label.
+
+
+CELL 4 – Preprocessing
+
+a) Standardizing Data - 
+-  Uses StandardScaler to scale X.
+-  Neural networks work better when data is normalized.
+
+b) One-hot Encode Labels
+-  Converts y to 10-class one-hot vectors using to_categorical().
+
+c) Train–test Split
+-  Splits dataset into:
+     -- 80% training
+     -- 20% testing
+- stratify=y ensures equal distribution of classes.
+
+
+CELL 5 – Build ANN Model
+
+A fully connected neural network is created:
+-  Input Layer: 64 neurons (one per pixel)
+-  Hidden Layer 1 + Dropout: learns features & avoids overfitting
+-  Hidden Layer 2: more feature extraction
+-  Output Layer: 10 neurons (one for each digit)
+-  Compiled with:
+      - adam optimizer
+      - categorical crossentropy for multi-class classification
+
+
+CELL 6 – Train the Model
+
+Trains ANN using:
+   --  20 epochs
+   --  batch_size = 32
+   --  Uses test data as validation.
+- Shows training accuracy & validation accuracy improving with epochs.
+
+
+CELL 7 – Plot Accuracy & Loss
+
+Creates two plots:
+1. Accuracy vs Epochs (Train & Validation)
+2. Loss vs Epochs (Train & Validation)
+
+
+CELL 8 – Evaluate the Model
+
+-  Computes final Test Loss and Test Accuracy.
+-  Accuracy is around 97%, which is excellent for digits dataset.
+
+
+CELL 9 – Predictions Visualization
+
+-  Predicts classes for test images.
+-  Displays first 10 test images with:
+     -  Predicted label
+     -  True label
+
+
+ALGORITHM  -- 
+
+1. Start
+2. Import required libraries
+3. Load digits dataset
+4. Preprocess the data
+    - Scale features
+    - Convert labels to one-hot
+5. Split dataset into training and testing sets
+6. Build ANN model using Sequential
+7. Train the model on training data
+8. Plot accuracy and loss curves
+9. Evaluate model on test data
+10. Predict digits and visualize results
+11. End

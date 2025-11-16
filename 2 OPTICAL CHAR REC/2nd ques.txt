@@ -1,0 +1,230 @@
+CELL 1 — Importing Libraries
+Cell Code (summary)
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.neural_network import MLPClassifier
+from sklearn.datasets import load_digits
+
+Questions & Answers
+1. Why do we import numpy?
+
+To handle numerical data easily.
+
+2. Why do we import matplotlib?
+
+To display images of digits.
+
+3. Why do we import MLPClassifier?
+
+Because it is an ANN model used for classification.
+
+4. Why do we import load_digits?
+
+To load the built-in dataset of handwritten digits (0–9).
+
+5. What type of problem is digit recognition?
+
+Classification problem.
+
+🔵 CELL 2 — Loading the Digits Dataset
+Cell Code (summary)
+digits = load_digits()
+X = digits.data
+y = digits.target
+
+Questions & Answers
+1. What does load_digits() return?
+
+It gives images of handwritten digits.
+
+2. What is X?
+
+Flattened pixel values of each digit image.
+
+3. What is y?
+
+The actual digit label (0–9).
+
+4. Why are digit images converted into numbers?
+
+Because ANN can only understand numeric data.
+
+5. How many samples are in the dataset?
+
+1797 digit images.
+
+🔵 CELL 3 — Visualizing a Digit
+Cell Code (summary)
+plt.imshow(digits.images[0], cmap='gray')
+plt.title(y[0])
+plt.show()
+
+Questions & Answers
+1. Why do we use imshow()?
+
+To display a digit image on screen.
+
+2. Why use cmap='gray'?
+
+To show the digit in black & white.
+
+3. What does digits.images[0] mean?
+
+The first digit image from the dataset.
+
+4. Why do we show the label using title()?
+
+So we know what digit the image represents.
+
+5. What does plt.show() do?
+
+It prints the image.
+
+🔵 CELL 4 — Creating the ANN Model
+Cell Code (summary)
+model = MLPClassifier(hidden_layer_sizes=(50,), activation='relu', max_iter=500)
+
+Questions & Answers
+1. What does hidden_layer_sizes=(50,) mean?
+
+One hidden layer with 50 neurons.
+
+2. Why use ReLU activation?
+
+It makes training faster and avoids vanishing gradients.
+
+3. Why max_iter=500?
+
+To allow more training steps for better accuracy.
+
+4. Is MLPClassifier suitable for OCR?
+
+Yes, because ANN can learn digit patterns.
+
+5. Is this deep learning?
+
+Not exactly — it is a simple ANN, not a CNN.
+
+🔵 CELL 5 — Training the Model
+Cell Code (summary)
+model.fit(X, y)
+
+Questions & Answers
+1. What does fit() do?
+
+It trains ANN on digit images.
+
+2. What does the model learn during training?
+
+Patterns of pixel values that represent each digit.
+
+3. Which algorithm is used to update weights?
+
+Backpropagation.
+
+4. Why do we give X and y?
+
+X = inputs (image pixels)
+y = correct digit labels
+
+5. What will output be after training?
+
+A trained ANN ready to predict new digits.
+
+🔵 CELL 6 — Predicting a Digit
+Cell Code (summary)
+prediction = model.predict([X[0]])
+print(prediction)
+
+Questions & Answers
+1. What does predict() do?
+
+It guesses what digit an image represents.
+
+2. Why pass X[0]?
+
+To test recognition on the first digit.
+
+3. What will prediction contain?
+
+A number between 0–9 (predicted digit).
+
+4. How does ANN decide the digit?
+
+By comparing learned pixel patterns.
+
+5. Why wrap X[0] inside brackets [ ]?
+
+predict() expects 2D input.
+
+🔵 CELL 7 — Checking Accuracy
+Cell Code (summary)
+from sklearn.metrics import accuracy_score
+y_pred = model.predict(X)
+print(accuracy_score(y, y_pred))
+
+Questions & Answers
+1. What is accuracy_score?
+
+A function to measure how correct the model is.
+
+2. What is y_pred?
+
+Predicted digits for all images.
+
+3. Why compare y and y_pred?
+
+To calculate accuracy.
+
+4. What accuracy does ANN usually achieve on digits data?
+
+Around 95%+.
+
+5. Why check accuracy?
+
+To ensure the model is performing well.
+
+🟣 GENERAL OCR + ANN QUESTIONS (VIVA)
+
+(Simple questions external examiner can ask)
+
+1. What is OCR?
+
+OCR means converting images of text into actual text.
+
+2. Why ANN for OCR?
+
+Because ANN can recognize patterns like shapes of digits.
+
+3. Why reshape images into 1D arrays?
+
+ANN needs input in a single vector.
+
+4. Why do digits dataset images have 8×8 pixels?
+
+This is the size of the built-in dataset.
+
+5. Why ANN instead of CNN?
+
+Simple ANN is enough for small datasets.
+
+6. What is the output of ANN in digit recognition?
+
+A number between 0 and 9.
+
+7. What activation functions can we use?
+
+ReLU, sigmoid, tanh.
+
+8. What is one-hot encoding?
+
+A way to represent classes in binary form.
+
+9. What happens if max_iter is too low?
+
+The model may not train fully.
+
+10. Why normalize image pixels?
+
+To help ANN train better.
